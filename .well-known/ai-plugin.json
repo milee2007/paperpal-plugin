@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Paperpal Grammar checker",
+    "name_for_model": "paperal grammar checker",
+    "description_for_human": "Get better at writing English. You can practice by correcting given paragraphs and learning based on feedback",
+    "description_for_model": "Plugin for writing grammatically better English, you can improve your grammer by correcting specific English paragraphs based on our feedback.",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "http://localhost:5003/.well-known/openapi.yaml"
+    },
+    "logo_url": "http://localhost:5003/.well-known/logo.jpeg",
+    "contact_email": "hello@paperpal.com",
+    "legal_info_url": "https://paperpal.com/terms"
+  }
+  

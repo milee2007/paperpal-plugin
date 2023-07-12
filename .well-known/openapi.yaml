@@ -1,0 +1,66 @@
+openapi: 3.0.1
+info:
+  title: Paperpal Grammar checker Plugin
+  description: A plugin that allows the user to improve their English grammar by practicing using ChatGPT. If you do not know the user's username, ask them first before making queries to the plugin. Otherwise, use the username "global".
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /paragraph/{username}:
+    get:
+      operationId: getParagraph
+      summary: Get a new paragraph containing grammatical mistakes which need to be fixed and resubmitted to earn points
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getParagraphResponse'
+    post:
+      operationId: checkParagraph
+      summary: Submit the updated paragraph after fixing all the gramatical mistakes
+      parameters:
+      - in: path
+        name: username
+        schema:
+            type: string
+        required: true
+        description: The name of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/verifyParagraphRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifyParagraphResponse'
+
+components:
+  schemas:
+    getParagraphResponse:
+      type: string
+      description: Paragraph that needs to be fixed.
+    verifyParagraphRequest:
+      type: object
+      required:
+      - paragraph
+      properties:
+        paragraph:
+          type: string
+          description: The updated paragraph without grammatical mistakes.
+    verifyParagraphResponse:
+      type: string
+      description: When paragraph is fixed correctly, then the score else the error message
